@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    @using OnlineShop.Service.Models
+    @model IEnumerable<ProductModel>
+
+}
+<div class="row">
+    @foreach (var product in Model)
+    {
+        @await Html.PartialAsync("_ProductBox", product)
+        ;
+    }
+</div>

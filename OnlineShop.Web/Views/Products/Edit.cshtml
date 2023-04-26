@@ -1,0 +1,66 @@
+﻿@using OnlineShop.Service.Models
+@model ProductModel
+
+
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>@ViewData["Title"]</h4>
+        </p>
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action=@ViewData["Action"] enctype="multipart/form-data">
+                    <input asp-for="Id" hidden />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Title" class="control-label"></label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Price" class="control-label"></label>
+                                <input asp-for="Price" type="number" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="NewPicture" class="control-label"></label>
+                                    <div class="custom-file">
+                                        <input asp-for="NewPicture" class="custom-file-input" />
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
+                                    <span asp-validation-for="NewPicture" class="text-danger"></span>
+                                    @if (Model != null && Model.Picture != null)
+                                    {
+                                        <img src="@FileHelper.RetrivePictureFromFolder@Model.Picture" class="img-thumbnail" height="80" width="80" asp-append-version="true" />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
